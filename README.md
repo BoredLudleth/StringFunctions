@@ -5,7 +5,15 @@ It's the second task of Summer School MIPT. It's a library with string functions
 
 ### main.cpp
 
-This file uses for running tests
+This file uses for running tests.
+
+### StringFunc.cpp
+
+There are all functions.
+
+### TestFunc.cpp
+
+There are all tests for every function.
 
 ### Makefile
 
