@@ -27,9 +27,9 @@ const char* my_strchr(const char* cs, char c) {
 }
 
 const char* my_strrchr(const char* cs, char c) {
-    int len_cs = my_strlen(cs);
+    size_t len_cs = my_strlen(cs);
 
-    for (int i = len_cs; i >= 0; i--) {
+    for (size_t i = len_cs; i > 0; i--) {
         if (cs[i] == c)
             return (cs + i);
     }
@@ -37,8 +37,8 @@ const char* my_strrchr(const char* cs, char c) {
     return NULL;
 }
 
-int my_strlen(const char *cs) {
-    int i = 0;
+size_t my_strlen(const char *cs) {
+    size_t i = 0;
 
     for ( ; cs[i] != '\0'; i++);
 
@@ -69,7 +69,7 @@ char* my_strncpy(char* s, const char* ct, int n) {
 
 char* my_strcat(char* s, const char* ct) {
 
-    int len_s = my_strlen(s);
+    size_t len_s = my_strlen(s);
     int i = 0;
 
     for ( ; ct[i] != '\0'; i++) {
@@ -81,7 +81,7 @@ char* my_strcat(char* s, const char* ct) {
 }
 
 char* my_strncat(char* s, const char* ct, int n) {
-    int len_s = my_strlen(s);
+    size_t len_s = my_strlen(s);
     int i = 0;
 
     for ( ; ct[i] != '\0' && i < n; i++) {
@@ -100,8 +100,8 @@ char* my_fgets(char *s, int size, FILE *stream) {
 
     int i = 0;
 
-    for(char ch = 0;(ch = getc(stream)) != EOF && (ch != '\n') && (i < size - 1); i++) {
-        s[i] = ch;
+    for(int ch = 0; (ch = getc(stream)) != EOF && (ch != '\n') && (i < size - 1); i++) {
+        s[i] = (char)ch;
     }
     s[i] = '\0';
 
@@ -122,15 +122,15 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream) {
         return -1;
     }
     if (*lineptr == NULL) {
-        char *lineptr = (char*) calloc(*n, sizeof(char));
+        *lineptr = (char*) calloc(*n, sizeof(char));
     }
 
-    char ch = 0;
-    int i = 0;
+    int ch = 0;
+    size_t i = 0;
 
     for ( ; (ch = getchar()) !=EOF && ch != '\n';) {
         if (i < *n) {
-            *lineptr[i] = ch;
+            *lineptr[i] = (char) ch;
         } else {
             *lineptr = (char*) realloc(*lineptr, ((*n)++));
         }
@@ -172,9 +172,9 @@ size_t my_strcspn(const char* cs, const char* ct) {
 }
 
 const char* my_strpbrk(const char* cs, const char* ct) {
-    int len_cs = my_strlen(cs);
+    size_t len_cs = my_strlen(cs);
 
-    for (int i = 0; i < len_cs; i++) {
+    for (size_t i = 0; i < len_cs; i++) {
         if (my_strrchr(ct, cs[i]) != NULL)
             return (cs + i);
     }
@@ -183,15 +183,14 @@ const char* my_strpbrk(const char* cs, const char* ct) {
 }
 
 const char* my_strstr(const char* cs, const char* ct) {
-    int len_cs = my_strlen(cs);
-    int len_ct = my_strlen(ct);
-    int answer = 0;
-    int j = 0;
+    size_t len_cs = my_strlen(cs);
+    size_t len_ct = my_strlen(ct);
+    size_t answer = 0;
+    size_t j = 0;
 
-    for (int i = 0; i <= (len_cs + 1); i++) {
+    for (size_t i = 0; i <= (len_cs + 1); i++) {
         answer = i;
-        j = 0;
-        for (int j = 0; i <= (len_cs + 1) && j <= (len_ct - 1); i++, j++) {
+        for (j = 0; i <= (len_cs + 1) && j <= (len_ct - 1); i++, j++) {
             if (cs[i] != ct[j]) 
                 break;
         }

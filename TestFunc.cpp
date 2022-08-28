@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <cstring>
 #include "StringFunc.hpp"
+#include "TestFunc.hpp"
 
 void my_strchr_test (const char* cs, char c) {
     if (my_strchr(cs, c) == strchr(cs, c))
@@ -43,7 +44,7 @@ void my_strncpy_test(const char* ct, int n) {
     char str1[10] = {0};
     char str2[10] = {0};
 
-    if (strcmp(my_strncpy(str1, "qwertqwer", 3), strncpy(str2, "qwertqwer", 3)) == 0)
+    if (strcmp(my_strncpy(str1, "qwertqwer", 3), strncpy(str2, "qwe", 3)) == 0)
         printf("Test my_strncpy - True\n"); 
     else
         printf("Test my_strncpy - False "

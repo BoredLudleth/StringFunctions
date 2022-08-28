@@ -50,7 +50,7 @@ const char* my_strrchr(const char* cs, char c);
 \return Function returns length of a string
 */
 
-int my_strlen(const char *cs); 
+size_t my_strlen(const char *cs); 
 
 //======================================================================================================================================
 
