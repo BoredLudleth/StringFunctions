@@ -87,12 +87,16 @@ void my_fgets_test(int size, FILE *stream) {
 }
 
 void my_strdup_test(const char *s) {
-    if (strcmp(strdup(s), my_strdup(s)) == 0)
+    char* ch1 = strdup(s);
+    char* ch2 = my_strdup(s);
+
+    if (strcmp(ch1, ch2) == 0)
         printf("Test my_strdup - True\n"); 
     else
         printf("Test my_strdup - False "
                "Problem with %s\n", s); 
-
+    free(ch1);
+    free(ch2);
 }
 
 void my_strcmp_test(const char* cs, const char* st) {

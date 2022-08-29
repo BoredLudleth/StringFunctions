@@ -50,7 +50,7 @@ size_t my_strlen(const char *cs) {
 char* my_strcpy(char* s, const char* ct) {
     int i = 0;
 
-    for (; ct[i] !='\0'; i++) {
+    for ( ; ct[i] !='\0'; i++) {
         s[i] = ct[i];
     }
     s[i] = '\0';
@@ -61,7 +61,7 @@ char* my_strcpy(char* s, const char* ct) {
 char* my_strncpy(char* s, const char* ct, int n) {
     int i = 0;
 
-    for (; ct[i] !='\0' && i < n; i++) {
+    for ( ; ct[i] !='\0' && i < n; i++) {
         s[i] = ct[i];
     }
     s[i] = '\0';
@@ -117,7 +117,7 @@ char* my_strdup(const char *s) {
 
     return s_copy;
 }
-
+// test it!!!
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream) {
     if (stream == NULL) {
         printf("Error, can't find File\n");
@@ -127,15 +127,14 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream) {
         *lineptr = (char*) calloc(*n, sizeof(char));
     }
 
-    int ch = 0;
     size_t i = 0;
 
-    for ( ; (ch = getchar()) !=EOF && ch != '\n';) {
-        if (i < *n) {
-            *lineptr[i] = (char) ch;
-        } else {
-            *lineptr = (char*) realloc(*lineptr, ((*n)++));
+    for (int ch = 0; (ch = getchar()) != EOF && ch != '\n'; i++) {
+        if (i >= *n) {
+            *n *= 2;
+            *lineptr = (char*) realloc(*lineptr, (*n));
         }
+        *lineptr[i] = (char) ch;
     }
 
     return i;
