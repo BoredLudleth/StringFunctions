@@ -33,6 +33,8 @@ const char* my_strrchr(const char* cs, char c) {
         if (cs[i] == c)
             return (cs + i);
     }
+    if (cs[0] == c)
+            return cs;
 
     return NULL;
 }

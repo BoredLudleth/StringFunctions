@@ -11,7 +11,8 @@ int main() {
 
     printf("\ntest for my_strrchr\n");
     my_strrchr_test("hhljqf;wje", 'e');
-    my_strrchr_test("hhljqf;wje", '1');    
+    my_strrchr_test("hhljqf;wje", '1'); 
+    my_strrchr_test("1hhljqf;wje", '1');   
 
     printf("\ntest for my_strlen\n");
     my_strlen_test("hhljqf;wje");
