@@ -1,4 +1,4 @@
-# SquareSolver
+# StringFunctions
 It's the second task of Summer School MIPT. It's a library with string functions.
 
 `Makefile` This uses for optimazing using terminal for user. Futhermore you can run tests.
